@@ -1,0 +1,48 @@
+TEST API
+http://localhost:5000/api/test/check
+http://localhost:5000/api/test/checktoken/ZG90bmV0QVBJ
+http://localhost:5000/api/test/checkdatabase
+
+
+GET
+http://localhost:5000/api/income/GetIncome/0
+http://localhost:5000/api/income/GetIncome/1
+http://localhost:5000/api/income/GetIncomeByName/add
+http://localhost:5000/api/income/GetIncomeByDateRange/2018-01-10/2018-07-01
+
+http://localhost:5000/api/expense/GetExpense/1
+http://localhost:5000/api/expense/GetExpenseByParticulars/adadada
+
+http://localhost:5000/api/report/GetReport
+
+http://localhost:5000/api/report/GetSumReport
+
+http://localhost:5000/api/report/GetReportByDateRange
+
+
+POST (Add New)
+http://localhost:5000/api/income/SaveIncome
+token: ZG90bmV0QVBJ
+objInfo: {IncomeID:0, DonarName: "test1", Amount: "10000"}
+
+http://localhost:5000/api/expense/SaveExpense
+token: ZG90bmV0QVBJ
+objInfo: {ExpenseID:0, Particulars: "test1", Amount: "50000"}
+
+
+
+
+POST (edit)
+http://localhost:5000/api/income/SaveIncome
+token: ZG90bmV0QVBJ
+objInfo: {IncomeID:1, DonarName: "add", Amount: "1000"}
+
+http://localhost:5000/api/expense/SaveExpense
+token: ZG90bmV0QVBJ
+objInfo: {ExpenseID:0, Particulars: "test1", Amount: "50000"}
+
+
+
+Delete
+http://localhost:5000/api/income/DeleteIncome/1
+http://localhost:5000/api/expense/DeleteExpense/2
