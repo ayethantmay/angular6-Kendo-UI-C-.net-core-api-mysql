@@ -1,0 +1,17 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+    <div class="list-group">
+
+            <a [routerLink]="['/order']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                &nbsp;&nbsp;&nbsp;&nbsp;Order
+            </a>
+
+            <a [routerLink]="['/inventory']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                &nbsp;&nbsp;&nbsp;&nbsp;Product
+            </a>
+
+            <a [routerLink]="['/customer']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                &nbsp;&nbsp;&nbsp;&nbsp;Customer
+            </a>
+
+    </div>
+</nav>

@@ -1,0 +1,234 @@
+<kendo-grid
+[data]="inventory_data">
+        <ng-template kendoGridToolbarTemplate>
+            <button (click)="show_form()">Add new</button>
+        </ng-template>
+        <kendo-grid-column field="inventory_id" title="ID"></kendo-grid-column>
+        <kendo-grid-column field="inventory_category" title="Category"></kendo-grid-column>
+		<kendo-grid-column field="inventory_name" title="Product"></kendo-grid-column>
+		<kendo-grid-column field="inventory_description" title="Description"></kendo-grid-column>
+		<kendo-grid-column field="inventory_price" title="Price"></kendo-grid-column>
+        <kendo-grid-column field="inventory_brand" title="Brand"></kendo-grid-column>
+
+
+        <kendo-grid-command-column title="command" width="220">
+            <ng-template kendoGridCellTemplate let-dataItem>
+                <a class="btn" (click)="edit(dataItem)"><i class="fa fa-edit"></i></a>
+				<a class="btn" (click)="deleteConfirm(dataItem)" ><i class="fa fa-trash"></i></a>
+            </ng-template>
+        </kendo-grid-command-column>
+
+      </kendo-grid>
+
+	  <div kendoDialogContainer></div>
+	  
+
+	  <br/><br/>
+
+	    
+	  <div *ngIf="show">
+			
+			<form [formGroup]="InventoryForm" (ngSubmit)="save()">
+	
+		   <div class="card">
+			   <div class="card-body">
+		
+					<div class="form-group row">
+		
+                        <div class="col-md-6">
+                            <label>Category</label>
+                            <select class="form-control" formControlName="inventory_category">
+                              <option>Shirt</option>
+                              <option>Blouse</option>
+                              <option>Short</option>
+							  <option>Pant</option>
+							  <option>Skirt</option>
+							  <option>Dress</option>
+                            </select>
+
+                            
+                          </div> 
+		
+							<div class="col-md-6">
+								<label>Product Name</label>
+									<div class=" input-group">
+										<input type="text" class="k-textbox form-control" formControlName="inventory_name"/>
+									</div>
+							<!--		<div
+                					class="k-tooltip k-tooltip-validation"
+                					[hidden]="InventoryForm.controls.inventory_name.valid || InventoryForm.controls.inventory_name.pristine">
+                					PLease insert non-negative value.
+            					</div> -->
+							</div>	
+		
+                    </div>
+                    
+                    <div class="form-group row">
+	
+                        <div class="col-md-6">
+                        <label>Description</label>
+                            <div class=" input-group">
+                                <input type="text" class="k-textbox form-control" formControlName="inventory_description"/>
+                            </div>
+                     <!--       <div
+                                class="k-tooltip k-tooltip-validation"
+                                [hidden]="InventoryForm.controls.inventory_description.valid || InventoryForm.controls.inventory_description.pristine">
+                                PLease insert between 0 to 100.
+                            </div> -->
+
+                        </div>
+    
+                        <div class="col-md-6">
+                            <label>Price</label>
+                                <div class=" input-group">
+                                    <input type="number" class="k-textbox form-control" formControlName="inventory_price"/>
+                                </div>
+                        <!--        <div
+                                class="k-tooltip k-tooltip-validation"
+                                [hidden]="InventoryForm.controls.inventory_price.valid || InventoryForm.controls.inventory_price.pristine">
+                                PLease insert between 0 to 100.
+                            </div> -->
+                        </div>
+                        
+                </div>
+
+                <div class="form-group row">
+	
+                    <div class="col-md-6">
+                    <label>Brand</label>
+                        <div class=" input-group">
+                            <input type="text" class="k-textbox form-control" formControlName="inventory_brand"/>
+                        </div>
+                <!--        <div
+                            class="k-tooltip k-tooltip-validation"
+                            [hidden]="InventoryForm.controls.inventory_brand.valid || InventoryForm.controls.inventory_brand.pristine">
+                            PLease insert between 0 to 100.
+                        </div> -->
+
+                    </div>
+
+                   
+            </div>
+
+		
+		
+					<div class="text-center form-group">
+							<button type="button" class="k-button" (click)="close_form()">Cancel</button>&nbsp;
+							<button type="submit" class="k-button k-primary" [disabled]="!InventoryForm.valid" value="Submit">Save</button>	
+					</div>
+		
+			   </div>
+		
+		   </div>
+		
+		
+		
+			</form>
+		</div>
+	
+	
+<!--
+	<br/><h3 class="text-center">Loan Product Setup</h3><br/>
+
+
+		<br/><h5><u>LOAN INFORMATION</u></h5><br/>
+
+		<form class="center-form">
+			
+				<div class="row">
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>PRODUCT ID</label>
+							<input type="text" class="form-control"/>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>LOAN NAME</label>
+							<input type="text" class="form-control"/>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>PERIOD(MONTHS)</label>
+							<input type="number" class="form-control"/>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="form-group">
+							<label>FREQUENCY</label>
+							<input type="number" min="0" class="form-control"/>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label>MAXIMUM AMOUNT</label>
+							<input type="number" min="0" class="form-control"/>
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label>MINIMUM AMOUNT</label>
+							<input type="number" min="0" class="form-control"/>
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label>INTEREST RATE(ANNUAL RATE)</label>
+							<input type="number" min="0" class="form-control"/>
+						</div>
+					</div>
+				</div>
+
+
+				<br/><br/>
+				
+				<h5><u>FEE INFORMATION</u></h5><br/>
+
+				<div class="row">
+					<div class="col-md-6">
+						<label>SOCIAL FEES(%)</label>
+						<input type="number" min="0" class="form-control"/>
+					</div>
+					<div class="col-md-6">
+						<label>SAVING FEES(%)</label>
+						<input type="number" min="0" class="form-control"/>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<label>SERVICE FEES(%)</label>
+						<input type="number" min="0" class="form-control"/>
+					</div>
+					<div class="col-md-6">
+						<label>FINE PER MONTH</label>
+						<input type="number" min="0" class="form-control"/>
+					</div>
+				</div>
+
+				<br/><br/>
+
+				<div class="button">
+			
+					<button type="submit" class="btn custom mx-4">Save</button>
+					<button type="reset" class="btn custom mx-4">Clear</button>
+						
+				</div>
+
+		</form>
+
+-->
+
+
+
+
+    
